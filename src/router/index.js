@@ -6,16 +6,20 @@ import SpellForm from '@/components/SpellForm.vue';
 const routes = [
   {
     path: '/',
+    redirect: { name: 'Main' }
+  },
+  {
+    path: '/dnd-srd/',
     name: 'Main',
     component: Main,
   },
   {
-    path: '/welcome-to-dnd',
+    path: '/dnd-srd/welcome-to-dnd',
     name: 'WelcomePage',
     component: WelcomePage,
   },
   {
-    path: '/#/s/:id(.*)',
+    path: '/dnd-srd/#/s/:id(.*)',
     name: 'SpellForm',
     component: SpellForm,
   },
@@ -23,9 +27,9 @@ const routes = [
 
 const router = createRouter({
   // history: createWebHashHistory(),
-  // history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.BASE_URL),
   // history: createWebHistory('/dnd/'),
-  history: createWebHistory(),
+  // history: createWebHistory(),
   routes
 });
 
