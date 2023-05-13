@@ -9,17 +9,17 @@ const routes = [
     redirect: { name: 'Main' }
   },
   {
-    path: '/dnd-srd/',
+    path: '/dndsrd/',
     name: 'Main',
     component: Main,
   },
   {
-    path: '/dnd-srd/welcome-to-dnd',
+    path: '/dndsrd/welcome-to-dnd',
     name: 'WelcomePage',
     component: WelcomePage,
   },
   {
-    path: '/dnd-srd/#/s/:id(.*)',
+    path: '/dndsrd/#/s/:id(.*)',
     name: 'SpellForm',
     component: SpellForm,
   },
