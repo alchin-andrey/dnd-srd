@@ -4,10 +4,6 @@ import WelcomePage from '@/views/WelcomePage.vue';
 import SpellForm from '@/components/SpellForm.vue';
 
 const routes = [
-  // {
-  //   path: '/',
-  //   redirect: { name: 'Main' }
-  // },
   {
     path: '/',
     name: 'Main',
@@ -27,9 +23,9 @@ const routes = [
 
 const router = createRouter({
   // history: createWebHashHistory(),
-  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(process.env.BASE_URL),
   // history: createWebHistory('/dnd/'),
-  // history: createWebHistory(),
+  history: createWebHistory(),
   routes
 });
 
