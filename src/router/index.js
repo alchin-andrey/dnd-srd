@@ -4,22 +4,22 @@ import WelcomePage from '@/views/WelcomePage.vue';
 import SpellForm from '@/components/SpellForm.vue';
 
 const routes = [
+  // {
+  //   path: '/',
+  //   redirect: { name: 'Main' }
+  // },
   {
     path: '/',
-    redirect: { name: 'Main' }
-  },
-  {
-    path: '/dndsrd/',
     name: 'Main',
     component: Main,
   },
   {
-    path: '/dndsrd/welcome-to-dnd',
+    path: '/welcome-to-dnd',
     name: 'WelcomePage',
     component: WelcomePage,
   },
   {
-    path: '/dndsrd/#/s/:id(.*)',
+    path: '/#/s/:id(.*)',
     name: 'SpellForm',
     component: SpellForm,
   },
