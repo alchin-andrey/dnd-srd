@@ -6052,7 +6052,7 @@ export default {
   how_to_start_1_details: 'Офлайн або онлайн, у клубі або вдома. Зазвичай грає 3-4 гравця на 3-4 години.',
 
   how_to_start_2_title: 'Створи персонажа',
-  how_to_start_2_details: 'dndme.club допоможе створити персонажа без читання правил за 3 простих кроки.',
+  how_to_start_2_details: 'rpg-me.club допоможе створити персонажа без читання правил за 3 простих кроки.',
 
   how_to_start_3_title: 'Приходь на гру',
   how_to_start_3_details: 'Роздрукуй аркуш персонажа<br/>та вчасно приходь з ним<br/>на заплановану гру.',
@@ -6110,7 +6110,7 @@ export default {
   lobby_game_type_3_name: 'Campaign',
   lobby_game_type_3_details: 'Масштабна історія, яка може тривати кілька місяців або навіть років. Ось як це робить команда <a target="_blank" href="https://youtu.be/P8pLvV3FjPc?t=756">Critical&nbsp;Role</a>&nbsp;(EN).',
 
-  lobby_conclustion: 'Dungeons & Dragons здатна сподобатися кожному. Це доводить її всесвітня популярність протягом вже 50+ років, не зважаючи на складність початку <br/>(до появи <span class="buff">dndme.club</span>). Спробуй і ти!',
+  lobby_conclustion: 'Dungeons & Dragons здатна сподобатися кожному. Це доводить її всесвітня популярність протягом вже 50+ років, не зважаючи на складність початку <br/>(до появи <span class="buff">rpg-me.club</span>). Спробуй і ти!',
 
   lobby_CTA: "Створи персонажа",
   lobby_footer: 'По всім питанням пишіть Дімі <a target="_blank" href="https://t.me/dimalagoda">t.me/dimalagoda</a>',

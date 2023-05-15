@@ -7,7 +7,7 @@
 				<section class="plag-absolute flex-col gap-4">
 					<div class="plug-dialog">
 						<div class="emog">
-							<span class="buff">dndme.club</span>
+							<span class="buff">rpg-me.club</span>
 							{{ em_Before }}
 							<emoji v-if="em_Upd" :data="emojiIndex" :emoji="em_Upd" :set="set_emoji" :size="21" />
 							{{ em_After }}

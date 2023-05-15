@@ -3,8 +3,8 @@ name: Deploy
 on:
   push:
     branches:
-      - stop 
-      # - master
+      # - stop 
+      - master
 
 jobs:
   build:
@@ -50,4 +50,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          # cname: dndme.club
+          cname: rpg-me.club

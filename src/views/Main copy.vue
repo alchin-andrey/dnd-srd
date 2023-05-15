@@ -1,102 +1,108 @@
 <template>
 	<!-- Left bar -->
-	<div class="main-class">
-		<div class="sidebar_left">
-			<div class="main_chapter">
-				<HeaderMenu />
-				<div class="flex-col gap-4">
-					<AppCharCard mob_menu v-if="!screen_Max"/>
-					<section v-if="!pages.race_page">
-						<div class="back-page-grup">
-							<AppBackPage
-								:text_arr="arr_Name_Race_Page"
-								@click="goPage('race_page')"
-							/>
-							<AppBackPage
-								v-if="!pages.class_page"
-								:text_arr="arr_Name_Class_Page"
-								@click="goPage('class_page')"
-							/>
-						</div>
-						<div class="delimiter mr-t-22" v-if="screen_Max" />
-					</section>
-				</div>
-				<AppSliderName v-if="pages.race_page" numb="01" name="race" />
-				<AppSliderName v-if="pages.class_page" numb="02" name="class" />
-				<AppName
-					v-if="pages.alignment_page"
-					numb="03"
-					title="name"
-					v-model="MY.name"
+	<div class="sidebar_left">
+		<div class="main_chapter">
+			<HeaderMenu />
+
+			<section v-if="!pages.race_page">
+        <div class="grid-col gap-10">
+          <AppBackPage
+            :text_arr="arr_Name_Race_Page"
+            @click="goPage('race_page')"
+          />
+          <AppBackPage
+            v-if="!pages.class_page"
+            :text_arr="arr_Name_Class_Page"
+            @click="goPage('class_page')"
+          />
+        </div>
+        <div class="delimiter mr-top-22" />
+			</section>
+
+			<AppSliderName v-if="pages.race_page" numb="01" name="race" />
+			<AppSliderName v-if="pages.class_page" numb="02" name="class" />
+			<AppName
+				v-if="pages.alignment_page"
+				numb="03"
+				title="name"
+				v-model="MY.name"
+			/>
+			<div class="delimiter" />
+		</div>
+
+		<div class="main_menu_wrap" @click="showHome()">
+			<div 
+      class="main_chapter_menu" 
+      @click.stop
+      >
+        <RaceMenu v-if="pages.race_page" />
+				<ClassMenu v-if="pages.class_page" />
+				<AlignmentMenu v-if="pages.alignment_page" />
+			</div>
+
+			<transition name="btm-fade" mode="out-in">
+        <my-button
+          v-if="shown_home"
+          :numb="btn_Numb"
+          :title="btn_Name"
+          @click="btnGo()"
+        />
+				<my-button-back
+					v-else
+					title="command_back"
+					@click="showHome()"
 				/>
-				<div class="delimiter" v-if="screen_Max" />
-			</div>
-			<div class="main_menu_wrap" @click="showHome()">
-				<div 
-					class="main_chapter_menu" 
-					>
-						<RaceMenu v-if="pages.race_page" @click.stop />
-						<ClassMenu v-if="pages.class_page" @click.stop />
-						<AlignmentMenu v-if="pages.alignment_page" @click.stop />
-				</div>
-				<transition name="btm-fade" mode="out-in">
-						<my-button
-							v-if="shown_home"
-							:numb="btn_Numb"
-							:title="btn_Name"
-							@click="btnGo()"
-						/>
-					<my-button-back
-						v-else
-						title="command_back"
-						@click="showHome()"
-					/>
-				</transition>
-			</div>
-		</div>
-		<!-- Drop-down menu -->
-		<div class="sidebar_wrap" :class="{ sidebar_wrap_open: setting_open }">
-			<HeaderSettings />
-			<RaceSettings v-if="pages.race_page" />
-			<ClassSettings v-if="pages.class_page" />
-			<AlignmentSettings v-if="pages.alignment_page" />
-		</div>
-		<div v-if="screen_Max" class="stripe-page"></div>
-		<!-- Character -->
-		<div class="represent" @click="showHome()" v-show="screen_Max && !PRINT_BLANK">
-			<transition name="fade-body">
-				<div
-					class="character"
-					:class="{
-						active_eyes: race_page.shown.eyes_color || race_page.shown.hair_color,
-						active_skin: race_page.shown.skin_color,
-					}"
-					:style="{
-						height: Char_Hight_Back,
-					}"
-				>
-					<WelcomeBanner />
-					<RaceBody body_part="skin" />
-					<RaceBody body_part="eyes" />
-					<RaceBody body_part="hair" />
-					<RaceBody body_part="class" v-if="!pages.race_page" />
-					<transition name="slide-fade">
-						<mySizeGrowth v-if="hide_Ruler" division zero skale_top />
-					</transition>
-				</div>
 			</transition>
 		</div>
-		<!-- Character -->
-		<!-- sidebar_right -->
-		<div
-			v-show="screen_Max && !PRINT_BLANK"
-			class="sidebar_right"
-			:class="{ sidebar_right_close: close_Sidebar_Right }"
-		>
-			<RaceParameters v-if="pages.race_page" />
-			<ClassParameters v-if="pages.class_page" />
-			<AlignmentParameters v-if="pages.alignment_page" />
-		</div>
+	</div>
+
+	<!-- Drop-down menu -->
+	<div class="sidebar_wrap" :class="{ sidebar_wrap_open: setting_open }">
+		<HeaderSettings />
+		<RaceSettings v-if="pages.race_page" />
+		<ClassSettings v-if="pages.class_page" />
+		<AlignmentSettings v-if="pages.alignment_page" />
+	</div>
+
+	<div class="stripe"></div>
+	<!-- Character -->
+
+	<div class="represent" @click="showHome()" v-show="!PRINT_BLANK">
+		<transition name="fade-body">
+			<div
+				class="character"
+				:class="{
+					active_eyes: race_page.shown.eyes_color || race_page.shown.hair_color,
+					active_skin: race_page.shown.skin_color,
+				}"
+				:style="{
+					height: Char_Hight_Back,
+				}"
+			>
+				<WelcomeBanner />
+
+				<RaceBody body_part="skin" />
+				<RaceBody body_part="eyes" />
+				<RaceBody body_part="hair" />
+				<RaceBody body_part="class" v-if="!pages.race_page" />
+
+				<transition name="slide-fade">
+					<mySizeGrowth v-if="hide_Ruler" division zero skale_top />
+				</transition>
+			</div>
+		</transition>
+	</div>
+	<!-- Character -->
+
+	<!-- sidebar_right -->
+	<div
+		v-show="!PRINT_BLANK"
+		class="sidebar_right"
+		:class="{ sidebar_right_close: close_Sidebar_Right }"
+	>
+		<RaceParameters v-if="pages.race_page" />
+		<ClassParameters v-if="pages.class_page" />
+		<AlignmentParameters v-if="pages.alignment_page" />
 	</div>
 
 	<!-- alse -->
@@ -111,7 +117,7 @@
 		<BlankPrint />
 	</div>
 
-	<PlagBanner v-if="!screen_Max"/>
+	<!-- <PlagBanner v-if="!screen_Max"/> -->
 </template>
 
 <script>
@@ -338,20 +344,39 @@ export default {
 </script>
 
 <style>
-.main-class {
-	display: flex;
-	height: 100%;
-	width: 100%;
-	overflow-x: hidden;
+.title-donat {
+	margin-bottom: 21px;
 }
 
-.main-class::-webkit-scrollbar {
-	width: 0;
+.title-donat::first-letter {
+	text-transform: uppercase;
+}
+
+.relative {
+	position: relative;
 }
 
 .delimiter {
 	height: 1px;
+	/* margin: 40px 0 0 0; */
 	background: rgba(255, 255, 255, 0.2);
+}
+
+.grid-col {
+	display: grid;
+}
+
+.gap-10 {
+	gap: 10px;
+}
+
+.mr-top-22 {
+  margin-top: 22px;
+}
+
+.stripe {
+	min-width: 2px;
+	background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sidebar_left {
@@ -362,6 +387,20 @@ export default {
 	flex-direction: column;
 }
 
+.main_menu_wrap {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow-y: scroll;
+	max-height: 100%;
+	scrollbar-width: none;
+}
+
+.main_menu_wrap::-webkit-scrollbar {
+	width: 0;
+}
+
 .main_chapter {
 	padding: 0 32px 0 32px;
 	display: flex;
@@ -369,74 +408,45 @@ export default {
 	gap: 22px;
 }
 
-.back-page-grup {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.main_menu_wrap {
-	display: flex;
-	flex-direction: column;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	scrollbar-width: none;
-	flex: 1 1 auto;
-}
-
-.main_menu_wrap::-webkit-scrollbar {
-	width: 0;
-}
-
-.main_chapter_menu {
-	height: 100%;
-	padding: 40px 32px 32px 32px;
-	overflow-y: scroll;
-	scrollbar-width: none;
-}
-
-.main_chapter_menu::-webkit-scrollbar {
-	width: 0;
-}
-
 @media (max-width: 1279px) {
-	.main-class {
-		display: flex;
-		justify-content: center;
-		height: 100%;
-		width: 100%;
-		overflow-y: scroll;
-		scrollbar-width: none;
-	}
-
-	.main-class::-webkit-scrollbar {
-		width: 0;
-	}
-
 	.sidebar_left {
-		width: 100%;
-		max-width: 434px;
 		padding-top: 20px;
+		max-width: 434px;
 	}
 
 	.main_chapter {
 		padding: 0 20px 0 20px;
 		gap: 26px;
 	}
+}
 
-	.back-page-grup {
-		gap: 4px;
-	}
+.main_chapter_menu {
+	padding: 40px 32px 32px 32px;
+	overflow-y: scroll;
+  min-width: 320px;
+	max-height: 100%;
+	scrollbar-width: none;
+}
 
-	.main_menu_wrap {
-		overflow-y: visible;
-		overflow-x: visible;
-	}
+.pd-top-22 {
+  padding-top: 22px;
+}
 
-	.main_chapter_menu {
-		padding: 34px 20px 26px 20px;
-		overflow-y: visible;
-	}
+.main_chapter_menu::-webkit-scrollbar {
+	width: 0;
+}
+
+.selection_menu_wrap {
+	display: flex;
+	flex-direction: column;
+	gap: 34px;
+}
+
+.selection_menu {
+	width: 256px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 
 .btm-fade-enter-active {

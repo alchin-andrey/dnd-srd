@@ -4,7 +4,7 @@
     <div class="hr-vert-2"></div>
     <div class="hr-vert-3"></div>
 		<div class="column-content">
-			<div class="int-600-28">dndme.club</div>
+			<div class="int-600-28">rpg-me.club</div>
 			<div>{{ link_Description }}</div>
 			<div class="hr-print"></div>
 			<AppPrintMenu__Chapter title="level" :chapter="String(MY.level)" />
