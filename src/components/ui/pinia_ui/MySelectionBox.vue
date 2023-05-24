@@ -1,9 +1,10 @@
 <template>
   <div
-  class="sidebar_selection"
+    v-if="screen_Max"
+    class="sidebar_selection"
     :class="{
       sidebar_selection_open: shown,
-      }"
+    }"
   >
     <transition name="slide-fade-sidebar">
       <div v-if="shown" class="selection_box">
@@ -11,22 +12,67 @@
       </div>
     </transition>
   </div>
+
+  <AppMobDialog 
+  v-else
+  :title="title"
+  :select="select"
+  :menu="menu"
+  :shown="shown" 
+  :not_mob_pd="not_mob_pd" 
+  :not_mob_header="not_mob_header" 
+  :mob_fixed="mob_fixed"
+  >
+    <slot></slot>
+  </AppMobDialog>
 </template>
 
 <script>
+import { mapState, mapActions } from "pinia";
+import { usePagesStore } from "@/stores/user/PagesStore";
 export default {
   name: "MySelectionBox",
   props: {
+    title: {
+      type: String,
+      default: null,
+    },
+    select: {
+      type: String,
+      default: null,
+    },
+    menu: {
+      type: Object,
+			default: {},
+    },
     shown: {
       type: Boolean,
       default: false,
     },
+    mob_fixed: {
+      type: Boolean,
+      default: false,
+    },
+    not_mob_pd: {
+      type: Boolean,
+      default: false,
+    },
+    not_mob_header: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    ...mapState(usePagesStore, ["screen_Max"]),
+  },
+  methods: {
+    ...mapActions(usePagesStore, ["showHome"]),
   },
 };
 </script>
 
 <style scoped>
-  .sidebar_selection {
+.sidebar_selection {
   height: 100%;
   left: 426px;
   opacity: 0;
@@ -55,8 +101,8 @@ export default {
 }
 
 .selection_box {
-  width: 426px;
-  height: 100vh;
+  min-width: 426px;
+  height: 100%;
   padding: 32px 32px 32px 0;
   display: flex;
   flex-direction: column;

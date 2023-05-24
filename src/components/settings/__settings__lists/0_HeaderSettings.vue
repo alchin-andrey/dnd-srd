@@ -1,20 +1,20 @@
 <template>
 	<!-- Preview -->
-	<My-Selection-Box :shown="main_page.shown.logo">
+	<My-Selection-Box :shown="main_page.shown.logo" not_mob_header>
 		<Description />
 	</My-Selection-Box>
 	<!-- Preview -->
 
 	<!-- Language change -->
-	<My-Selection-Box :shown="main_page.shown.lang">
+	<My-Selection-Box :shown="main_page.shown.lang" not_mob_header>
 		<LangSetting />
 	</My-Selection-Box>
 	<!-- Language change -->
 
 	<!-- Level -->
-	<My-Selection-Box :shown="main_page.shown.lvl">
+	<My-Selection-Box :shown="main_page.shown.lvl" not_mob_header>
 		<div class="flex_options">
-			<MyRange v-model.number="MY.level" lvl />
+			<AppRangSlider v-model.number="MY.level" lvl/>
 			<MyRangeSize lvl />
 		</div>
 	</My-Selection-Box>

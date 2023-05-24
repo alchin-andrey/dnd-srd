@@ -11,6 +11,8 @@ import AppBackPage from "@/components/ui/AppBackPage.vue";
 import AppSelection from "@/components/ui/AppSelection.vue";
 import AppController from "@/components/ui/AppController.vue";
 import AppCharCard from "@/components/ui/AppCharCard.vue";
+import AppMobDialog from "@/components/ui/AppMobDialog.vue";
+import AppRangSlider from "@/components/ui/AppRangSlider.vue";
 
 import AppDisclaimer from "@/components/ui/AppDisclaimer.vue";
 import AppProficiencies from "@/components/ui/AppProficiencies.vue";
@@ -108,6 +110,8 @@ export default [
   AppSelection,
   AppController,
   AppCharCard,
+  AppMobDialog,
+  AppRangSlider,
 
   AppMasters,
   AppSrdDisclaimer,

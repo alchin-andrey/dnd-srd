@@ -43,6 +43,9 @@ export const usePagesStore = defineStore({
 		setting_open: null,
 		shown_home: true,
 
+		shown_mob_param: false,
+    mob_param_spell: false,
+
 		race_page: {
 			shown: {},
 		},
@@ -143,8 +146,11 @@ export const usePagesStore = defineStore({
 			let page_setting = this.page_setting_open;
 			let setting = this.setting_open;
 			setting ? (this[page_setting].shown[setting] = false) : null;
-			// this[this.page_setting_open].shown[this.setting_open] = false;
-			this.shown_home = true;
+      
+      this.shown_mob_param = false;
+      this.mob_param_spell = false;
+			
+      this.shown_home = true;
 			this.page_setting_open = null;
 			this.setting_open = null;
 		},
@@ -168,12 +174,8 @@ export const usePagesStore = defineStore({
 		},
 
 		showSettings__Main(name) {
-      // if(this.site_settings.old_page) {
-      //   this.goOldPage();
-      // } else {
         if(name == 'logo') this.site_settings.logo_anim = false;
         this.showSettings("main_page", name);
-      // }
 		},
 
 		// ANCHOR //^ Race Page: Shown settings
@@ -258,9 +260,16 @@ export const usePagesStore = defineStore({
       }
 		},
 
-
     showSettings__Alignment(name) {
 			this.showSettings("alignment_page", name);
+		},
+
+    showMobParam() {
+      this.shown_mob_param = !this.shown_mob_param;
+		},
+
+    showMobParamSpell() {
+      this.mob_param_spell = !this.mob_param_spell;
 		},
 	},
 });
