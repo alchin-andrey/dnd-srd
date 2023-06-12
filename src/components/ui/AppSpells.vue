@@ -104,12 +104,13 @@
 
             <div class="manna_bubble_print jbm-500-40" v-if="print_Plus">
               <div class="print_icon">
-                <svg
+                <AppSvg class="print-svg" name="plus"/>
+                <!-- <svg
                   class="print-svg"
                   viewBox="0 0 18 18"
                   xmlns="http://www.w3.org/2000/svg"
                   v-html="ui_icon.plus"
-                ></svg>
+                ></svg> -->
               </div>
             </div>
           </div>
@@ -920,6 +921,17 @@ export default {
       return num + (mana - mana_min) * 2;
     },
 
+    Num_Plus_2_2_4() {
+      let num = this.Spell_Index.impact_size_num;
+      let mana = this.Mana_Numb - this.Index;
+      if (mana == 0) return num;
+      if (mana == 1) return num;
+      if (mana == 2) return num*2;
+      if (mana == 3) return num*2;
+      if (mana == 4) return num*3;
+      if (mana == 5) return num*3;
+    },
+
     Num_Plus_5() {
       let num = this.Spell_Index.impact_size_num;
       let mana = this.Mana_Numb;
@@ -932,6 +944,13 @@ export default {
       let mana = this.Mana_Numb;
       let mana_min = this.Index;
       return num + (mana - mana_min) * 10;
+    },
+
+    Num_Plus_100() {
+      let num = this.Spell_Index.impact_size_num;
+      let mana = this.Mana_Numb;
+      let mana_min = this.Index;
+      return num + (mana - mana_min) * 100;
     },
 
     Num_7_30_365_5280() {

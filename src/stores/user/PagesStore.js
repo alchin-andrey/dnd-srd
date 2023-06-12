@@ -11,8 +11,10 @@ export const usePagesStore = defineStore({
       welcome: true,
       logo_anim: false,
       print_dialog: false,
-      // old_page: null,
-      name_user: false,
+    },
+
+    errors: {
+      file_photo: false,
     },
 
     links: {
@@ -28,7 +30,7 @@ export const usePagesStore = defineStore({
 
       level_sett: {
         min: 1,
-        max: 6,
+        max: 8,
       }
 		},
 
@@ -36,7 +38,6 @@ export const usePagesStore = defineStore({
       race_page: true,
 			class_page: false,
       alignment_page: false,
-      // master_page: true,
 		},
 
 		page_setting_open: null,
@@ -56,20 +57,22 @@ export const usePagesStore = defineStore({
 
 		alignment_page: {
 			shown: {},
+      ratio_photo: 362/480,
 		},
-
-    // master_page: {}
 	}),
 
   persist: {
-    paths: ['site_settings', 'pages'],
+    paths: [
+      'site_settings', 
+      'pages', 
+    ],
   },
 
   getters: {
     screen_Max: (stor) => stor.screen_size >= 1280,
-    screen_1280: (stor) => stor.screen_size <= 1280,
-    screen_955: (stor) => stor.screen_size <= 955,
-    screen_480: (stor) => stor.screen_size <= 480,
+    // screen_1280: (stor) => stor.screen_size <= 1280,
+    // screen_955: (stor) => stor.screen_size <= 955,
+    // screen_480: (stor) => stor.screen_size <= 480,
     screen_Menu_Num: (stor) => stor.screen_size >= 434 ? 434 : stor.screen_size,
 
     page_Open() {

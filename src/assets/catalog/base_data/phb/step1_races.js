@@ -24,42 +24,6 @@ export default {
           name: "rock",
           details: "rock_gnome_details",
 
-          //link_male
-          //link_female
-//NOTE - Для отладки
-          // settings: [
-          //   {
-          //     type: "stats",
-          //     name: "stats",
-          //     select: 2,
-          //     filter: "no_used",
-          //     num: 1,
-          //   },
-          //   {
-          //     type: "skills",
-          //     name: "skills",
-          //     select: 2,
-          //     filter: "no_used",
-          //     num: "mastery"
-          //   },
-          //   {
-          //     type: "languages",
-          //     name: "languages",
-          //     select: 1,
-          //     filter: "no_used",
-          //   },
-          //   {
-          //     type: "spells",
-          //     name: "spells",
-          //     level: 1,
-          //     select: 2,
-          //     mana_min: 0,
-          //     mana_max: 0,
-          //     classes: ["wizard"],
-          //   },
-          // ],
-//NOTE - Для отладки
-
           color: {
             skin: [color[2][1], color[2][2], color[2][3], color[2][4]],
             eyes: [
@@ -96,6 +60,8 @@ export default {
           ],
 
           spells: [
+
+            //ДЛЯ ВІДЛАДКИ
             
             {
               level: 1,
@@ -105,7 +71,6 @@ export default {
               level: 1,
               spell: spells.lighter,
             },
-
             {
               level: 1,
               spell: spells.music_box,
@@ -133,7 +98,10 @@ export default {
 
 
           proficiencies: {
-            languages: [lang.animal],
+            languages: [{
+              name: "lang_animal",
+              details: "lang_animal_details"
+          },],
           },
 
           spells: [
@@ -1458,21 +1426,6 @@ export default {
                   proficiencies: {languages: [lang.goblin]}
                 },
                 {
-                  name: lang.thieves.name,
-                  details: lang.thieves.details,
-                  proficiencies: {languages: [lang.thieves]}
-                },
-                {
-                  name: lang.druid.name,
-                  details: lang.druid.details,
-                  proficiencies: {languages: [lang.druid]}
-                },
-                {
-                  name: lang.animal.name,
-                  details: lang.animal.details,
-                  proficiencies: {languages: [lang.animal]}
-                },
-                {
                   name: lang.sylvan.name,
                   details: lang.sylvan.details,
                   proficiencies: {languages: [lang.sylvan]}
@@ -1833,21 +1786,6 @@ export default {
                   name: lang.goblin.name,
                   details: lang.goblin.details,
                   proficiencies: {languages: [lang.goblin]}
-                },
-                {
-                  name: lang.thieves.name,
-                  details: lang.thieves.details,
-                  proficiencies: {languages: [lang.thieves]}
-                },
-                {
-                  name: lang.druid.name,
-                  details: lang.druid.details,
-                  proficiencies: {languages: [lang.druid]}
-                },
-                {
-                  name: lang.animal.name,
-                  details: lang.animal.details,
-                  proficiencies: {languages: [lang.animal]}
                 },
                 {
                   name: lang.sylvan.name,

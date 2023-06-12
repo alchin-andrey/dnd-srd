@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @mouseenter="toggle" @mouseleave="toggle">
+    <div @mouseenter="toggle_Visib" @mouseleave="toggle_Hiden">
       <slot />
       <transition name="slide-fade-tolltip">
         <div
@@ -8,6 +8,7 @@
           class="tooltip-pointer"
           :class="{
             'tooltip-pointer--warn': warn,
+            'tooltip-pointer--error': error,
           }"
         />
       </transition>
@@ -18,6 +19,7 @@
         class="tooltip-clss int-400"
         :class="{
           'tooltip-clss--warn': warn,
+          'tooltip-clss--error': error,
         }"
       >
         {{ t_Text }}
@@ -47,6 +49,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    error: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -60,19 +66,18 @@ export default {
   },
 
   methods: {
-    toggle() {
-      this.isShown = !this.isShown;
+    toggle_Visib() {
+      this.isShown = true;
+    },
+
+    toggle_Hiden() {
+      this.isShown = false;
     },
   },
 };
 </script>
 
 <style scoped>
-/* .flex {
-  display: flex;
-  flex-direction: column;
-} */
-
 .tooltip-clss {
   position: absolute;
   color: #ffffff;
@@ -112,6 +117,17 @@ export default {
 }
 .tooltip-pointer--warn:after {
   border-bottom-color: #ffc93d;
+}
+
+.tooltip-clss--error {
+  border-color: #FF0000;;
+  color: #FF0000;
+}
+.tooltip-clss--error:after {
+  border-bottom-color: #FF0000;
+}
+.tooltip-pointer--error:after {
+  border-bottom-color: #FF0000;
 }
 
 .slide-fade-tolltip-enter-active,

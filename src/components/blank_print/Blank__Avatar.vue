@@ -1,31 +1,27 @@
 <template>
 	<div class="avatar-print">
+
+		<div class="hiden-avatar">
+			<section class="character_blank" :class="{character_blank_higher: chare_Higher}">
+				<RaceBody body_part="skin" blank_print/>
+				<RaceBody body_part="eyes" blank_print/>
+				<RaceBody body_part="hair" blank_print/>
+				<RaceBody body_part="class" blank_print/>
+			</section>
+		</div>
+
 		<section class="level-blok">
 			<div>{{ t_lvl }}</div>
 			<div class="int-600-48">{{ MY.level }}</div>
 			<div>{{ t_Mastery }}</div>
 		</section>
 
-		<div class="hiden-avatar">
-			<section class="character_blank" :class="{character_blank_higher: chare_Higher}">
-				<RaceBody body_part="skin" />
-				<RaceBody body_part="eyes" />
-				<RaceBody body_part="hair" />
-				<RaceBody body_part="class" />
-			</section>
-		</div>
-
 		<section class="avatar-sett-wrapp">
 			<div class="flex-sett">
 				<div class="sett-text-absol">{{ t_Saving }}</div>
 				<div class="cell-wrapp">
 					<div class="flex-centr">
-						<svg
-							class="main-svg"
-							viewBox="0 0 18 18"
-							xmlns="http://www.w3.org/2000/svg"
-							v-html="ui_icon.plus"
-						></svg>
+						<AppSvg class="svg-36 svg-black-f" name="plus"/>
 					</div>
 					<div>
 						<div class="cell-free" v-for="n in 3" />
@@ -33,12 +29,7 @@
 				</div>
 				<div class="cell-wrapp">
 					<div class="flex-centr">
-						<svg
-							class="main-svg"
-							viewBox="0 0 18 18"
-							xmlns="http://www.w3.org/2000/svg"
-							v-html="ui_icon.minus"
-						></svg>
+						<AppSvg class="svg-36 svg-black-f" name="minus"/>
 					</div>
 					<div>
 						<div class="cell-free" v-for="n in 3" />
@@ -122,10 +113,13 @@ export default {
 	height: 144px;
 	border: 1px solid #000000;
 	border-radius: 24px;
+	position: relative;
+	z-index: 1000;
+	background-color: #ffffff;
 }
 
 .avatar-sett-wrapp {
-	width: 112px;
+	width: 162px;
 	margin: 1px 1px 0 0;
 }
 
@@ -133,13 +127,17 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	gap: 16px;
-	padding-top: 24px;
+	padding: 30px 26px 26px;
 	position: relative;
+	z-index: 1000;
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	border-radius: 24px;
 }
 
 .sett-text-absol {
 	position: absolute;
-	top: 0;
+	top: 8px;
 	left: 50%;
 	z-index: 100;
 	transform: translateX(-50%);
@@ -147,8 +145,11 @@ export default {
 
 .sett-tired {
 	position: relative;
-	margin-top: 64px;
-	padding-top: 46px;
+	margin-top: 36px;
+	padding: 54px 26px 26px;
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	border-radius: 24px;
 }
 
 .flex-centr {
@@ -174,6 +175,7 @@ export default {
 	height: 48px;
 	border: 1px solid #000;
 	margin: -1px -1px 0 0;
+	background-color: #ffffff;
 }
 
 .hiden-avatar {
@@ -188,21 +190,18 @@ export default {
   width: 100%;
 	position: absolute;
   bottom: 0;
+	border-radius: 24px;
+	overflow: hidden;
 }
 
-.character_blank img {
+.character_blank img,
+.character_blank svg,
+.character_blank > .custom-img {
 	position: absolute;
 	bottom: 60px;
-	/* left: 0 !important; */
 	left: 50%;
 	transform: translateX(-50%);
-}
-
-.character_blank svg {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	border-radius: 24px;
 }
 
 .character_blank_higher {
@@ -211,6 +210,11 @@ export default {
 }
 
 .character_blank_higher img {
+  top: 0;
+  bottom: auto;
+}
+
+.character_blank_higher > .custom-img {
   top: 0;
   bottom: auto;
 }

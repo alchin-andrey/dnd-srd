@@ -2,16 +2,21 @@
 // import { mapState } from "pinia";
 import { defineStore } from "pinia";
 import { useMYStore } from "@/stores/user/MYStore";
+import { usePagesStore } from "@/stores/user/PagesStore";
+import { useGenderStore } from "@/stores/modules/simple/GenderStore";
 
 
 import alignment_lists from "@/assets/catalog/base_data/list_alignment.js";
 import alignment_sett from "@/assets/catalog/base_data/step3_alignment.js";
+import list_links from "@/assets/catalog/base_data/list_links.js";
 
 export const useAlignmentStore = defineStore({
 	id: "AlignmentStore",
 	state: () => ({
 		alignment_lists: alignment_lists,
     alignment_sett: alignment_sett,
+    hero_links: list_links,
+
 	}),
 
 	getters: {
@@ -21,7 +26,6 @@ export const useAlignmentStore = defineStore({
 		},
 
     alignment_Arr() {
-      const сustomm = this.сustomm_Main_Settings_Alignment_Arr;
       return this.alignment_lists.alignment;
     },
 
@@ -54,6 +58,33 @@ export const useAlignmentStore = defineStore({
       const name = сustomm.find(el => el.name == "weakness");
       return name?.select_list[0];
     },
+
+    photo_Select() {
+      const MYStore = useMYStore();
+			return MYStore.MY.param.user_photo ? "your_image" : "standard";
+		},
+
+    photo_Link_Hero() {
+      const MYStore = useMYStore();
+      const GenderStore = useGenderStore();
+      const race_name = MYStore.MY_Race.name;
+			const class_name = MYStore.MY_Class.name;
+			const sex = GenderStore.sex_Char_Body;
+      const link_main = this.hero_links.none[race_name][sex];
+      const link = this.hero_links[class_name]?.[race_name][sex];
+			return link ?? link_main;
+		},
+
+    photo_Link_Pinterest() {
+      const MYStore = useMYStore();
+      const GenderStore = useGenderStore();
+			const race_name = MYStore.MY_Race.name;
+			const class_name = MYStore.MY_Class.name;
+			const sex = GenderStore.sex_Char_Body;
+			const main = 'https://ro.pinterest.com/search/pins/?q=dnd'
+			const link = `${main}%20${race_name}%20${sex}%20${class_name}`
+			return link;
+		},
 
 	},
 

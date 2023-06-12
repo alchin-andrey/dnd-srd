@@ -8,6 +8,7 @@
 	<AppMobDialog v-else title="char_details" :shown="shown_mob_param" mob_param mob_fixed>
 		<section class="character-mob">
 			<RaceBody body_part="skin" />
+			<RaceBody body_part="skin" error/>
 			<RaceBody body_part="eyes" />
 			<RaceBody body_part="hair" />
 			<RaceBody body_part="class" v-if="!pages.race_page" />
@@ -90,7 +91,9 @@ export default {
 	overflow: hidden;
 }
 
-.character-mob>img {
+.character-mob > img,
+.character-mob > svg,
+.character-mob > .custom-img {
 	position: absolute;
 	bottom: 0;
 	right: 50%;
@@ -98,6 +101,20 @@ export default {
 	-webkit-transform: translate(-50%, 0%);
 	-ms-transform: translate(-50%, 0%);
 	transform: translate(-50%, 0%);
+	border-radius: 12px;
+	z-index: 10;
+	cursor: pointer;
+}
+
+/* .character-mob > .custom-img {
+	position: absolute;
+	bottom: 0;
+	right: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, 0%);
+	-ms-transform: translate(-50%, 0%);
+	transform: translate(-50%, 0%);
+	border-radius: 12px;
 }
 
 .character-mob>svg {
@@ -108,5 +125,5 @@ export default {
 	-webkit-transform: translate(-50%, 0%);
 	-ms-transform: translate(-50%, 0%);
 	transform: translate(-50%, 0%);
-}
+} */
 </style>
